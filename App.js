@@ -54,23 +54,32 @@ class ComponentConstructor extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            nome: 'by FamaDev',
+            nome: '',
         }
 
         this.entrar = this.entrar.bind(this);
+        this.trocar = this.trocar.bind(this);
     }
 
-    entrar() {
+    entrar(nome) {
         this.setState({
-            nome: 'by FamaDev - 2022'
+            nome: nome
         });
+    }
+
+    trocar(nome){
+      this.setState({
+        nome: nome
+      })
     }
 
     render() {
         return (
             <View style={{ marginTop: 20, width: 250 }}>
 
-                <Button title="Entrar" onPress={ this.entrar }/>
+                <Button title="Entrar" onPress={() => this.entrar('Famadev - 2022') }/>
+
+                <Button title="Trocar" onPress={() => this.trocar('Famadev - Futuro') }/>
 
                 <Text 
                 style={{ color: 'black', fontSize: 16, fontWeight: 'bold', marginTop: 10, textAlign: 'center' }}>
