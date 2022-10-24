@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, Button } from "react-native";
 
 class App extends Component {
+
   render() {
 
     let nome = 'Steve Jobs';
@@ -21,6 +22,9 @@ class App extends Component {
           <ImageComponent 
             largura={ 500 } altura={ 200 } nome={ nome }
           />
+
+          <ComponentConstructor />
+
       </View>
     );
   };
@@ -44,5 +48,34 @@ class ImageComponent extends Component {
         );
     };
 };
+
+class ComponentConstructor extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            nome: 'Marcelo Salles',
+        }
+    }
+
+    entrar() {
+
+    }
+    
+    render() {
+        return (
+            <View style={{ marginTop: 20 }}>
+
+                <Button title="Entrar" onPress={ this.entrar }/>
+
+                <Text 
+                style={{ color: 'black', fontSize: 24, fontWeight: 'bold' }}>
+                    { this.state.nome }
+                </Text>
+            </View>
+        );
+    };
+};
+    
 
 export default App;
