@@ -54,22 +54,26 @@ class ComponentConstructor extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            nome: 'Marcelo Salles',
+            nome: 'by FamaDev',
         }
+
+        this.entrar = this.entrar.bind(this);
     }
 
     entrar() {
-
+        this.setState({
+            nome: 'by FamaDev - 2022'
+        });
     }
-    
+
     render() {
         return (
-            <View style={{ marginTop: 20 }}>
+            <View style={{ marginTop: 20, width: 250 }}>
 
                 <Button title="Entrar" onPress={ this.entrar }/>
 
                 <Text 
-                style={{ color: 'black', fontSize: 24, fontWeight: 'bold' }}>
+                style={{ color: 'black', fontSize: 16, fontWeight: 'bold', marginTop: 10, textAlign: 'center' }}>
                     { this.state.nome }
                 </Text>
             </View>
