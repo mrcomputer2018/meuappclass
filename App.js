@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     text : {
-        fontSize: 24,
+        fontSize: 32,
         fontWeight: 'bold',
     },
     image: {
