@@ -24,6 +24,10 @@ const styles = StyleSheet.create({
     text : {
         fontSize: 24,
         fontWeight: 'bold',
+    },
+    viewComponent: {
+        marginTop: 20, 
+        width: 250
     }
 });
 
@@ -53,7 +57,7 @@ class ComponentConstructor extends Component {
 
     render() {
         return (
-            <View style={{ marginTop: 20, width: 250 }}>
+            <View style={ styles.viewComponent }>
 
                 <Button title="Entrar" onPress={() => this.entrar('Famadev - 2022') }/>
 
@@ -63,6 +67,7 @@ class ComponentConstructor extends Component {
                 style={{ color: 'black', fontSize: 16, fontWeight: 'bold', marginTop: 10, textAlign: 'center' }}>
                     { this.state.nome }
                 </Text>
+                
             </View>
         );
     };
