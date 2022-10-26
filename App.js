@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
     },
     viewComponent: {
         marginTop: 20, 
-        width: 400,
+        width: 200,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-around',
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
         color: 'black', 
         fontSize: 16, 
         fontWeight: 'bold', 
-        marginTop: 10, 
+        marginTop: 30, 
         textAlign: 'center' ,
     },
 });
