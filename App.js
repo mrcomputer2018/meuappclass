@@ -8,21 +8,24 @@ class App extends Component {
         super(propps);
         this.state = {
             name: '',
+            input: '',
         };
 
-        this.capturaNome = this.capturaNome.bind(this);
+        this.inserir = this.inserir.bind(this);
     }
 
-    capturaNome(text){
-        if (text.length > 0) {
-            this.setState({ 
-                name: 'Bem vindo: ' + text,
+    inserir(){
+        if (this.state.input === '') {
+            alert('Campo nome é obrigatorio');
+            return;
+        }
+        else {
+            this.setState({
+                /* recebe o que esta dentro de input */
+                name: 'Bem vindo: ' + this.state.input,
             });
-        }
-        else { 
-            this.setState({ name: ''});
-        }
-        
+         }
+       
     }
 
     render() {
@@ -31,8 +34,8 @@ class App extends Component {
                 <TextInput
                     placeholder='Digite o seu nome'
                     underlineColorAndroid= 'transparent'
-                    onChangeText={ this.capturaNome }
-                    style={ styles.textInput }
+                    onChangeText={ (text) => this.setState({ input: text }) }
+                    style={ styles.textInput } 
                 />
 
                 <Button title='Inserir' onPress={ this.inserir }/>
