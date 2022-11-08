@@ -5,14 +5,14 @@ class App extends Component {
     render() {
         return (
             <View style={ styles.container }>
-                    <ScrollView 
-                    horizontal={true}
-                    showsHorizontalScrollIndicator={false}>
-                        <View style={ styles.box5 }></View>
-                        <View style={ styles.box6 }></View>
-                        <View style={ styles.box7 }></View>
-                        <View style={ styles.box8 }></View>
+                <View>
+                    <ScrollView showsVerticalScrollIndicator={false}>
+                        <View style={ styles.box1 }></View>
+                        <View style={ styles.box2 }></View>
+                        <View style={ styles.box3 }></View>
+                        <View style={ styles.box4 }></View>
                     </ScrollView>
+                </View>
             </View>
         );
     }
@@ -22,25 +22,21 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
-    box5: {
-        backgroundColor: 'blue',
-        height: 250,
-        width: 150,
-    },
-    box6: {
+    box1: {
         backgroundColor: 'yellow',
         height: 250,
-        width: 150,
     },
-    box7: {
+    box2: {
         backgroundColor: 'red',
         height: 250,
-        width: 150,
     },
-    box8: {
+    box3: {
         backgroundColor: 'green',
         height: 250,
-        width: 150,
+    },
+    box4: {
+        backgroundColor: 'blue',
+        height: 250,
     },
 });
 
