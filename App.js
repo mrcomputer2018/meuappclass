@@ -1,78 +1,68 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, FlatList, Text, ActivityIndicator } from 'react-native';
-
-import api from './src/services/api';
-import Filmes from './src/components/filmes';
+import 
+{ View, StyleSheet, ActivityIndicator, Text } 
+from 'react-native';
+import Conversor from './src/components/conversor';
 
 class App extends Component { 
+
     constructor(props) {
         super(props);
         this.state = {
-            filmes: [],
             loading: true,
         };
     }
 
-    async componentDidMount() { 
-        try{
-            const response = await api.get("/r-api/?api=filmes");
-            /* axios quando faz uma requisição 
-            os dados vem dentro de data  */
-            this.setState({ 
-                filmes:response.data,
-                loading: false, 
-            });
-        }
-        catch(error){
+   componentDidMount() {
+        try {
+            this.setState({
+                loading: false,
+            })
+        } catch (error) {
             alert("falha de requisição HTTP: " + error);
         }
     }
 
     render() {
-
         if(this.state.loading) {
-            return (
+            return(
                 <View style={ styles.viewLoading }>
                     <ActivityIndicator
                     color='#09a6ff'
                     size={100}
                     />
-                    <Text style={ styles.textLoading }>
-                        Carregando...
-                    </Text>
+                    <Text style={ styles.txtLoading }>Carregando...</Text>
                 </View>
             );
+            
         }
         else {
             return (
                 <View style={ styles.container }>
-    
-                    <FlatList
-                    data={ this.state.filmes }
-                   /*  key sempre em string */
-                    keyExtractor={ item => item.id.toString() }
-                    /* cada item que sera renderizado */
-                    renderItem={ ({ item }) => <Filmes data={ item }/> }
+                    <Conversor
+                    moedaA='USD'
+                    moedaB='BRL'
                     />
-                  
                 </View>
-            );
+             );
         }
-     }
+        
+    }
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     viewLoading: {
         flex: 1,
-        alignItems: 'center',
         justifyContent: 'center',
+        alignItems: 'center',
     },
-    textLoading: {
+    txtLoading: {
         color: '#09a6ff',
-        padding: 5,
     },
 });
 
