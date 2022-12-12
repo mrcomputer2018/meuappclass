@@ -1,96 +1,52 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Text, Animated, TouchableOpacity } from 'react-native';
+import 
+{ View, StyleSheet, Text, Animated } 
+from 'react-native';
 
-class App extends Component { 
+class App extends Component {
 
-    constructor(props) {
+    constructor(props) { 
         super(props);
         this.state = { 
-            larguraAnimada: new Animated.Value(170),
-            alturaAnimada: new Animated.Value(50),
-            opacityAnimada: new Animated.Value(0),
+            widthAnimated: new Animated.Value(0),
         };
 
-        this.carregarGrafico= this.carregarGrafico.bind(this);
-
+        Animated.timing(
+            this.state.widthAnimated,
+            {
+                toValue: 100,
+                duration: 5000
+            }
+        ).start();
     }
 
-    carregarGrafico() {
-        Animated.sequence([
-            Animated.timing(
-                this.state.opacityAnimada,
-                {
-                    toValue: 1,
-                    duration: 2000,
-                }
-            ),
-            Animated.timing(
-                this.state.alturaAnimada,
-                {
-                    toValue: 300,
-                    duration: 500,
-                }
-            ),
-        ]).start();
-    }
+    render() {
 
-    render() { 
-        return(
-            <View style={styles.container}>
+        let porcentAnimated = this.state.widthAnimated.interpolate({
+            inputRange: [0, 100],
+            outputRange: ['0%', '100%']
+        });
 
-                <View style={{
-                    height: 80,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    flexDirection: 'row',
-                    backgroundColor: '#4169e1',
+        return (
+            <View style={ styles.container }>
+                <Animated.View style={{
+                    backgroundColor: '#4961e1',
+                    width: porcentAnimated,
+                    height: 25,
                 }}>
-                    <TouchableOpacity onPress={ this.carregarGrafico }>
-                        <Text style={{
-                            fontSize: 25,
-                            color: '#fff',
-                        }}>
-                            Gerar grafico
-                        </Text>
-                    </TouchableOpacity>
-                </View>
 
-                <View style={{
-                    flex: 1,
-                    justifyContent: 'flex-end',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                }}>
-                    <Text>Vendas</Text>
-                    <Animated.View style={{
-                        width: this.state.larguraAnimada,
-                        height: this.state.alturaAnimada,
-                        backgroundColor: '#ff0000',
-                        justifyContent: 'center',
-                        opacity: this.state.opacityAnimada
-                    }}>
-                        <Text style={{
-                            color: '#fff',
-                            fontSize: 20,
-                            textAlign: 'center',
-                            padding: 10,
-                        }}>
-                            R$ 150,00
-                        </Text>
-                    </Animated.View>
-
-                </View>
-
-                
+                </Animated.View>
             </View>
         );
     }
 }
 
 const styles = StyleSheet.create({
-    container: { 
+    container: {
         flex: 1,
-    },
+        justifyContent: 'center',
+        alignItems: 'flex-start',
+    }
 });
 
-export default App; 
+export default App;
