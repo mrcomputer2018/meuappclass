@@ -1,5 +1,5 @@
 import React, 
-{ useState, useEffect, useMemo, useRef } from 'react';
+{ useState, useEffect, useMemo } from 'react';
 import 
 { View, StyleSheet, Text, TextInput, TouchableOpacity } 
 from 'react-native';
@@ -10,7 +10,6 @@ export default function App() {
 
     const [ name, setName ] = useState('');
     const [ txtInput, setTxtInput ] = useState('');
-    const inputSet = useRef(null);
 
     /*  quando montar na tela chamara esta funçao */
     /*  componentDidMount */
@@ -55,12 +54,12 @@ export default function App() {
         setTxtInput('');
     }
 
-    function novoNome(){
-        inputSet.current.focus();
-    }
-
     /* quando alterar a state nome sera executado */
-    const letrasNome = useMemo(() => name.length, [name]);
+    const letrasNome = useMemo(() => {
+        console.log('muudou letra');
+        return name.length;
+    
+    }, [name]);
 
     return(
         <View style={ styles.container }>
@@ -70,7 +69,6 @@ export default function App() {
             placeholder='digite o seu nome...'
             value={ txtInput }
             onChangeText={ (text) => setTxtInput( text) }
-            ref={inputSet}
             />
 
             {/* botao */}
@@ -80,16 +78,6 @@ export default function App() {
             >
                 <Text style={ styles.txtBtn }>
                     Alterar nome
-                </Text>
-            </TouchableOpacity>
-
-             {/* botao novo */}
-            <TouchableOpacity 
-            style={ styles.btn }
-            onPress={ novoNome }
-            >
-                <Text style={ styles.txtBtn }>
-                    Novo
                 </Text>
             </TouchableOpacity>
 
