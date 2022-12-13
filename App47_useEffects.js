@@ -1,5 +1,4 @@
-import React, 
-{ useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import 
 { View, StyleSheet, Text, TextInput, TouchableOpacity } 
 from 'react-native';
@@ -54,13 +53,6 @@ export default function App() {
         setTxtInput('');
     }
 
-    /* quando alterar a state nome sera executado */
-    const letrasNome = useMemo(() => {
-        console.log('muudou letra');
-        return name.length;
-    
-    }, [name]);
-
     return(
         <View style={ styles.container }>
             {/* input */}
@@ -83,9 +75,6 @@ export default function App() {
 
             <Text style={ styles.txt }>
                 { name }
-            </Text>
-            <Text style={ styles.txt }>
-                tem { letrasNome } letras
             </Text>
         </View>
     );
