@@ -1,48 +1,81 @@
 import React from 'react';
 
 import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-/* tipo de navegacao que quero usar */
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import HomeTab from './src/pages/HomeTab';
+import SobreTab from './src/pages/SobreTab';
+import ContatoTab from './src/pages/ContatoTab';
 
-import Home from './src/pages/Home';
-import Sobre from './src/pages/Sobre';
-import Contato from './src/pages/Contato';
+import Feather from 'react-native-vector-icons/Feather';
 
-/* configuração de rota */
-const Stack = createNativeStackNavigator();
+const Tab =  createBottomTabNavigator();
 
 export default function App() {
     return(
         <NavigationContainer>
-            {/* tipo de navegacao */}
-            <Stack.Navigator>
-
-                {/* minhas paginas */}
-                <Stack.Screen
-                name="Home"
-                component={Home}
-                options={{
-                    title: 'Tela inicial',
-                    headerStyle: {
-                        backgroundColor: '#121212',
-                    },
-                    headerTintColor: '#fff',
-                    headerShown: false,
-                }}
+            <Tab.Navigator
+            screenOptions={{
+                /* esconde a header */
+                headerShown: false,
+                /* esconde a tabBar */
+                tabBarHideOnKeyboard: true,
+                /* esconde a label da tabBar */
+                tabBarShowLabel: false,
+                /* cor do item ativo*/
+                tabBarActiveTintColor: '#fff',
+                /* personalizar a tabBar */
+                tabBarStyle: {
+                    backgroundColor: '#202225'
+                }
+            }}
+            >
+                <Tab.Screen
+                    name="Home"
+                    component={ HomeTab }
+                    options={{
+                       /*  tabBarLabel: "Inicio", */
+                        tabBarIcon: ({ color, size }) => {
+                            return <Feather 
+                                    name="home" 
+                                    color={ color } 
+                                    size={ size }
+                                    />
+                        }
+                    }}
                 />
 
-                <Stack.Screen
-                name="Sobre"
-                component={Sobre}
+                <Tab.Screen
+                    name="Sobre"
+                    component={ SobreTab }
+                    options={{
+                        tabBarIcon: ({ color, size }) => {
+                            return <Feather 
+                                    name="file-text"
+                                    color={ color }
+                                    size={ size }
+                                    />;
+                        }
+                    }}
                 />
 
-                <Stack.Screen
-                name="Contato"
-                component={Contato}
+                <Tab.Screen
+                    name="Contato"
+                    component={ ContatoTab }
+                    options={{
+                        /* remove o header */
+                        headerShown: false,
+                        tabBarIcon: ({ color, size }) => {
+                            return <Feather 
+                                    name="phone-call"
+                                    color={ color }
+                                    size={ size }
+                                    />;
+                        }
+                    }}
                 />
 
-            </Stack.Navigator>
+            </Tab.Navigator>
         </NavigationContainer>
     );
-}
+};
