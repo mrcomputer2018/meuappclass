@@ -14,12 +14,18 @@ export default function HomeTab() {
     return(
         <View style={styles.container}>
             <Text style={ styles.title }>Tela Home</Text>
-            <Button 
+            {/* <Button 
             style={ styles.btn}
             title="ir para sobre"
             onPress={ navegaSobre }
+            /> */}
+
+            <Button 
+            style={ styles.btn}
+            title="detalhes"
+            onPress={ () => navigation.navigate('Detalhes')}
             />
-           
+            
         </View>
     );
 };
@@ -37,5 +43,6 @@ const styles = StyleSheet.create({
     },
     btn: { 
         height: 50,
+        borderRadius: 5,
     },
 });
