@@ -1,79 +1,72 @@
-/* configuracao de rotas padroes */
-import React from 'react';
+import React from "react";
+import { createDrawerNavigator } from '@react-navigation/drawer';
 
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import StackRoutes from "./stackRoutes";
+import Sobre from "../pages/SobreTab";
+import Contato from "../pages/Detalhes";
 
-import StackRoutes from '../routes/stackRoutes';
-import SobreTab from '../pages/SobreTab';
-import ContatoTab from '../pages/ContatoTab';
+import CustomDrawer from "../components/customDrawer";
 
-import Feather from 'react-native-vector-icons/Feather';
+import Feather from "react-native-vector-icons/Feather";
 
-const Tab =  createBottomTabNavigator();
+const Drawer = createDrawerNavigator();
 
 export default function Routes() {
-    return(       
-        <Tab.Navigator
+    return (
+        <Drawer.Navigator
+        /* componente que sera renderizado */
+        drawerContent={ CustomDrawer }
         screenOptions={{
-            /* esconde a header */
             headerShown: false,
-            /* esconde a tabBar */
-            tabBarHideOnKeyboard: true,
-            /* esconde a label da tabBar */
-            tabBarShowLabel: false,
-            /* cor do item ativo*/
-            tabBarActiveTintColor: '#fff',
-            /* personalizar a tabBar */
-            tabBarStyle: {
-                backgroundColor: '#202225'
-            }
+           /*  drawerStyle: {
+                backgroundColor: '#121212',
+            }, */
+            drawerActiveBackgroundColor: '#00dee4',
+            /* cor do texto ativo */
+            drawerActiveTintColor:'#ffff',
+            drawerInactiveBackgroundColor: '#f1f1f1',
+            drawerInactiveTintColor: '#000000',
         }}
         >
-            <Tab.Screen
-                name="HomeSatck"
-                component={ StackRoutes }
-                options={{
-                /*  tabBarLabel: "Inicio", */
-                    tabBarIcon: ({ color, size }) => {
-                        return <Feather 
-                                name="home" 
-                                color={ color } 
-                                size={ size }
-                                />
-                    }
-                }}
+            <Drawer.Screen
+            name="Home"
+            component={ StackRoutes }
+            options={{
+                title: 'Inicio',
+                drawerIcon: 
+                ({ focused, color, size }) => <Feather 
+                    color={color} 
+                    size={size} 
+                    name={focused ? 'home' : 'home'} 
+                />
+            }}
             />
 
-            <Tab.Screen
-                name="Sobre"
-                component={ SobreTab }
-                options={{
-                    tabBarIcon: ({ color, size }) => {
-                        return <Feather 
-                                name="file-text"
-                                color={ color }
-                                size={ size }
-                                />;
-                    }
-                }}
+            <Drawer.Screen
+            name="Sobre"
+            component={ Sobre }
+            options={{
+                drawerIcon: 
+                ({ focused, color, size }) => <Feather 
+                    color={color} 
+                    size={size} 
+                    name={focused ? 'file-text' : 'file-text'} 
+                />
+            }}
             />
 
-            <Tab.Screen
-                name="Contato"
-                component={ ContatoTab }
-                options={{
-                    /* remove o header */
-                    headerShown: false,
-                    tabBarIcon: ({ color, size }) => {
-                        return <Feather 
-                                name="phone-call"
-                                color={ color }
-                                size={ size }
-                                />;
-                    }
-                }}
+            <Drawer.Screen
+            name="Contato"
+            component={ Contato }
+            options={{
+                drawerIcon: 
+                ({ focused, color, size }) => <Feather 
+                    color={color} 
+                    size={size} 
+                    name={focused ? 'phone-call' : 'phone-call'} 
+                />
+            }}
             />
-
-        </Tab.Navigator>
+        </Drawer.Navigator>
     );
-};
+}

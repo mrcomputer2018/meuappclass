@@ -14,17 +14,19 @@ export default function HomeTab() {
     return(
         <View style={styles.container}>
             <Text style={ styles.title }>Tela Home</Text>
-            {/* <Button 
-            style={ styles.btn}
-            title="ir para sobre"
-            onPress={ navegaSobre }
-            /> */}
-
             <Button 
             style={ styles.btn}
             title="detalhes"
             onPress={ () => navigation.navigate('Detalhes')}
             />
+
+            <View stylee= { styles.viewBtn }>
+                <Button 
+                style={ styles.btn}
+                title="abrir drawer"
+                onPress={ () => navigation.openDrawer() }
+                /> 
+            </View>
             
         </View>
     );
@@ -45,4 +47,7 @@ const styles = StyleSheet.create({
         height: 50,
         borderRadius: 5,
     },
+    viewBtn: { 
+        marginTop: 20,
+    }
 });
